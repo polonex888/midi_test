@@ -1,0 +1,29 @@
+let audioBuffer = null;
+// 音声オブジェクトを格納するオブジェクト
+let audioObjects = {};
+
+const keySoundHandler = () => {
+        const notenum = key.getAttribute('data-note');
+    const audio = audioObjects[notenum];
+    if (audio) {
+        audio.currentTime = 0; // 再生位置をリセット
+        audio.play();
+    }
+}
+
+// MP3ファイルを事前に読み込む
+function loadAudio(minNodeNum,maxNodeNum,soundType) {
+    for (let note = minNodeNum; note <= maxNodeNum; note++) {
+        const url = "{% static 'keyboard/audio/' %}" + ("00" + note).slice(-3) + ".wav";
+        const audio = new Audio(url);
+        audioObjects[note] = audio;
+    }
+}
+
+// イベントハンドラ設定
+function addKeySoundEvent(){
+        // キーをクリックしたときに音を再生
+        document.querySelectorAll('.key').forEach(key => {
+            key.addEventListener('click', keySoundHandler);
+        })
+}

@@ -1,3 +1,8 @@
+@charset "utf-8";
+* {
+	margin:0;
+	padding:0;
+}
 body {
     display: flex;
     justify-content: center;
@@ -6,7 +11,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
 }
-
+/*
 .piano {
     display: flex;
     position: relative;
@@ -36,3 +41,4 @@ body {
 .key:hover {
     background-color: #ccc;
 }
+*/

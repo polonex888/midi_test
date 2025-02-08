@@ -6,55 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ピアノキーボード</title>
     <link rel="stylesheet" href="{% static 'keyboard/style.css' %}">
+    <script src="{% static 'keyboard/javascript/main.js' %}"></script>
 </head>
 <body>
+    <!--
     <div class="piano">
-        <div class="key white" data-note="60"></div> <!-- C -->
-        <div class="key black" data-note="61"></div> <!-- C# -->
-        <div class="key white" data-note="62"></div> <!-- D -->
-        <div class="key black" data-note="63"></div> <!-- D# -->
-        <div class="key white" data-note="64"></div> <!-- E -->
-        <div class="key white" data-note="65"></div> <!-- F -->
-        <div class="key black" data-note="66"></div> <!-- F# -->
-        <div class="key white" data-note="67"></div> <!-- G -->
-        <div class="key black" data-note="68"></div> <!-- G# -->
-        <div class="key white" data-note="69"></div> <!-- A -->
-        <div class="key black" data-note="70"></div> <!-- A# -->
-        <div class="key white" data-note="71"></div> <!-- B -->
+        <div class="key white" data-note="60"></div>
+        <div class="key black" data-note="61"></div> 
+        <div class="key white" data-note="62"></div> 
+        <div class="key black" data-note="63"></div> 
+        <div class="key white" data-note="64"></div> 
+        <div class="key white" data-note="65"></div>
+        <div class="key black" data-note="66"></div> 
+        <div class="key white" data-note="67"></div> 
+        <div class="key black" data-note="68"></div> 
+        <div class="key white" data-note="69"></div> 
+        <div class="key black" data-note="70"></div> 
+        <div class="key white" data-note="71"></div>
     </div>
-    <script>
-        // Web Audio APIの初期化
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const MIN_NODENUM = 21
-        const MAX_NODENUM = 108
-        let audioBuffer = null;
-        // 音声オブジェクトを格納するオブジェクト
-        const audioObjects = {};
+    -->
 
-        // MP3ファイルを事前に読み込む
-        function loadAudio() {
-            for (let note = MIN_NODENUM; note <= MAX_NODENUM; note++) {
-                const url = "{% static 'keyboard/audio/' %}" + ("00" + note).slice(-3) + ".wav";
-                const audio = new Audio(url);
-                audioObjects[note] = audio;
-            }
-        }
-
-        // ページ読み込み時に音声をロード
-        window.addEventListener('load', loadAudio);
-
-        // キーをクリックしたときに音を再生
-        document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', () => {
-                const notenum = key.getAttribute('data-note');
-                const audio = audioObjects[notenum];
-                if (audio) {
-                    audio.currentTime = 0; // 再生位置をリセット
-                    audio.play();
-                }
-            });
-        });
-        
-    </script>
 </body>
 </html>
